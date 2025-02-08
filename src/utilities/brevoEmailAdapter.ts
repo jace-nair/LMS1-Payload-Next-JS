@@ -1,6 +1,7 @@
 import axios from "axios";
 import { EmailAdapter, SendEmailOptions } from "payload";
 
+
 export default function brevoAdapter(): EmailAdapter {
     const adapter = () => ({
         
@@ -37,7 +38,7 @@ export default function brevoAdapter(): EmailAdapter {
                         });
                         return res.data;
                     }catch(error){
-                        console.log("Errorn sending email with Brevo", error);
+                        console.log("Error sending email with Brevo", error);
                     }
                 }
             
