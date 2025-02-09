@@ -12,7 +12,7 @@ interface LoginParams {
     password: string;
 }
 
-interface LoginResponse {
+export interface LoginResponse {
     success: boolean;
     error?: string;
 }
