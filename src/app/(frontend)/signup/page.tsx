@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import SignupForm from "./components/SignupForm";
+import SignupForm from "./_components/SignupForm";
 
 export default async function SignupPage(): Promise<ReactElement> {
     return(

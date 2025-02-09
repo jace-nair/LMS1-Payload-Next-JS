@@ -1,6 +1,6 @@
 import { Heading1 } from "lucide-react";
 import { ReactElement } from "react";
-import LoginForm from "./components/LoginForm";
+import LoginForm from "./_components/LoginForm";
 
 export default async function LoginPage(): Promise<ReactElement> {
     return(

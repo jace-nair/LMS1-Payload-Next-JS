@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import React, { ReactNode } from "react";
-import { getCustomer } from "./actions/getCustomer";
+import { getCustomer } from "./_actions/getCustomer";
+import AuthenticatedNavbar from "./_components/Navbar";
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const customer = await getCustomer();
@@ -9,6 +10,9 @@ export default async function Layout({ children }: { children: React.ReactNode }
     return null;
   }
   return (
-          <>{children}</>
+          <div>
+            <AuthenticatedNavbar />
+            {children}
+          </div>
   );
 }
