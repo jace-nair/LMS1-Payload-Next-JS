@@ -18,6 +18,8 @@ export interface Config {
     categories: Category;
     users: User;
     customers: Customer;
+    courses: Course;
+    particitpation: Particitpation;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -35,6 +37,8 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     customers: CustomersSelect<false> | CustomersSelect<true>;
+    courses: CoursesSelect<false> | CoursesSelect<true>;
+    particitpation: ParticitpationSelect<false> | ParticitpationSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -715,6 +719,57 @@ export interface Customer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses".
+ */
+export interface Course {
+  id: number;
+  title: string;
+  description: string;
+  image: number | Media;
+  curriculum?:
+    | (
+        | {
+            title: string;
+            duration: string;
+            playerUrl: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            title: string;
+            questions: {
+              question: string;
+              answers: {
+                answer: string;
+                correct: boolean;
+                id?: string | null;
+              }[];
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quiz';
+          }
+      )[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "particitpation".
+ */
+export interface Particitpation {
+  id: number;
+  customer: number | Customer;
+  course: number | Course;
+  progress?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -908,6 +963,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'customers';
         value: number | Customer;
+      } | null)
+    | ({
+        relationTo: 'courses';
+        value: number | Course;
+      } | null)
+    | ({
+        relationTo: 'particitpation';
+        value: number | Particitpation;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1291,6 +1354,61 @@ export interface CustomersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses_select".
+ */
+export interface CoursesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
+  curriculum?:
+    | T
+    | {
+        video?:
+          | T
+          | {
+              title?: T;
+              duration?: T;
+              playerUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        quiz?:
+          | T
+          | {
+              title?: T;
+              questions?:
+                | T
+                | {
+                    question?: T;
+                    answers?:
+                      | T
+                      | {
+                          answer?: T;
+                          correct?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "particitpation_select".
+ */
+export interface ParticitpationSelect<T extends boolean = true> {
+  customer?: T;
+  course?: T;
+  progress?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

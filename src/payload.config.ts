@@ -18,6 +18,8 @@ import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import brevoAdapter from './utilities/brevoEmailAdapter'
 import { Customers } from './collections/Customers'
+import { Courses } from './collections/Courses/Courses'
+import { Participation } from './collections/Courses/Participation'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -60,7 +62,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Customers],
+  collections: [Pages, Posts, Media, Categories, Users, Customers, Courses, Participation],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
