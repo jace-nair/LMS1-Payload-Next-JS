@@ -1,16 +1,16 @@
 import type { CollectionConfig } from 'payload'
 
-//import { authenticated } from '../../access/authenticated'
+import { authenticated } from '../../access/authenticated'
 
 export const Customers: CollectionConfig = {
   slug: 'customers',
-  /*access: {
-    admin: authenticated,
+  access: {
+    //admin: authenticated,
     create: authenticated,
-    delete: authenticated,
-    read: authenticated,
-    update: authenticated,
-  },*/
+    //delete: authenticated,
+    //read: authenticated,
+    //update: authenticated,
+  },
   admin: {
     defaultColumns: ['name', 'email'],
     useAsTitle: 'name',
